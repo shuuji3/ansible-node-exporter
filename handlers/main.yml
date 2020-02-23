@@ -5,3 +5,10 @@
     daemon_reload: true
     name: node_exporter
     state: restarted
+  when: ansible_service_mgr == 'systemd'
+- name: restart node_exporter
+  become: true
+  service:
+    name: node_exporter
+    state: restarted
+  when: ansible_service_mgr != 'systemd'

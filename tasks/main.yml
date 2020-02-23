@@ -28,3 +28,14 @@
     enabled: true
   tags:
     - run
+  when: ansible_service_mgr == 'systemd'
+
+- name: Ensure Node Exporter is enabled on boot
+  become: true
+  service:
+    name: node_exporter
+    enabled: true
+    state: restarted
+  tags:
+    - run
+  when: ansible_service_mgr != 'systemd'

@@ -4,10 +4,10 @@
     that:
       - "':' in node_exporter_web_listen_address"
 
-- name: Fail on unsupported init systems
-  fail:
-    msg: "This module only works with systemd"
-  when: ansible_service_mgr != 'systemd'
+# - name: Fail on unsupported init systems
+#   fail:
+#     msg: "This module only works with systemd"
+#   when: ansible_service_mgr != 'systemd'
 
 - name: Check collectors
   fail:

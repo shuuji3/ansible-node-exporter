@@ -61,3 +61,13 @@
     group: root
     mode: 0644
   notify: restart node_exporter
+  when: ansible_distribution != "CentOS" or ansible_distribution_major_version != "6"
+
+- name: Copy the Node Exporter init script for CentOS 6
+  template:
+    src: node_exporter.init.j2
+    dest: /etc/init.d/node_exporter
+    owner: root
+    group: root
+    mode: 0755
+  when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "6"
